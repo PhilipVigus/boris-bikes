@@ -6,9 +6,21 @@ describe DockingStation do
     it 'releases its bike' do
       expect(subject).to respond_to :release_bike
     end
+
     it 'Has the docking station realesed a bike' do
       docking = DockingStation.new
       bike = docking.release_bike
-    expect(bike.working?).to eq true
-  end
+      expect(bike.working?).to eq true
+    end
+
+    it 'allows you to dock a bike' do
+      bike = Bike.new
+      expect(subject.dock(bike)).to eq bike
+    end
+
+    it 'allows you to see the docked bike' do
+      bike = Bike.new
+      subject.dock(bike)
+      expect(subject.bike).to eq(bike)
+    end
 end
