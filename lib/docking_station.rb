@@ -8,15 +8,13 @@ class DockingStation
     if @bikes.empty?
       raise 'No bikes available!'
     else
-      bike = @bikes[-1]
       @bikes.pop
-      bike
     end
   end
 
   def dock(bike)
     raise 'No space available in dock!' if @bikes.length == 20
     @bikes.push(bike)
-    p @bikes
+    bike
   end
 end
