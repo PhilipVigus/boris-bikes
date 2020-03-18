@@ -29,4 +29,9 @@ describe DockingStation do
       expect {subject.release_bike}.to raise_error 'No bikes available!'
     end
 
+    it 'checks to see if a bike is already present when you try to dock a bike, and stops you if it is' do
+      subject.dock(Bike.new)
+      expect { subject.dock(Bike.new) }.to raise_error 'No space available in dock!'
+    end
+
 end
