@@ -31,6 +31,8 @@ class DockingStation
     end
   end
 
+
+
  def empty?
    if @bikes.length == 0
      true
