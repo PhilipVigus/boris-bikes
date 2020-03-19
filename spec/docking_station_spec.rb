@@ -30,10 +30,31 @@ describe DockingStation do
     end
 
     it 'checks to see if a bike is already present when you try to dock a bike, and stops you if it is' do
-      20.times { subject.dock Bike.new }
+      20.times { subject.dock(Bike.new) }
       expect { subject.dock(Bike.new) }.to raise_error 'No space available in dock!'
     end
 
+    it 'checks to see if the dock is full' do
+      expect(subject).to respond_to :full?
+    end
+
+    it 'Check if #full? Method returns false on an empty dockingstation' do
+      expect(subject.full?).to eq false
+    end
+
+    it 'check to see if station is full return true' do
+      20.times { subject.dock(Bike.new) }
+      expect(subject.full?).to eq true
+    end
+
+    it 'check to see if station is empty return true' do
+      expect(subject.empty?).to eq true
+    end
+
+    it 'check to see if station is empty return false' do
+      subject.dock(Bike.new)
+      expect(subject.empty?).to eq false
+    end
 
 
 end
